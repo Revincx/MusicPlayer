@@ -99,7 +99,10 @@ async def start_stream(song: Song, lang):
             chat.id,
             get_quality(song),
             stream_type=StreamType().pulse_stream,
-            join_as=None if join_as_peer is None else InputPeerChannel(join_as_peer.channel_id, join_as_peer.access_hash)
+            join_as=None if join_as_peer is None else InputPeerChannel(
+                channel_id=join_as_peer.channel_id, 
+                access_hash=join_as_peer.access_hash
+            )
         )
     except (NoActiveGroupCall, GroupCallNotFound):
         peer = await app.resolve_peer(chat.id)
