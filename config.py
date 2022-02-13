@@ -47,7 +47,7 @@ class Config:
         self.ADMINS_ONLY: bool = os.environ.get("ADMINS_ONLY", False)
         self.SPOTIFY_CLIENT_ID: str = os.environ.get("SPOTIFY_CLIENT_ID", None)
         self.SPOTIFY_CLIENT_SECRET: str = os.environ.get("SPOTIFY_CLIENT_SECRET", None)
-        self.JOIN_AS: int = os.environ.get("JOIN_AS", None)
+        self.JOIN_AS: str = os.environ.get("JOIN_AS", None)
 
 
 config = Config()

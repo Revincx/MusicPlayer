@@ -85,7 +85,7 @@ async def skip_stream(song: Song, lang):
 
 async def start_stream(song: Song, lang):
     chat = song.request_msg.chat
-    join_as_peer = None
+    join_as_peer: InputPeerChannel = None
     if config.JOIN_AS is not None:
         join_as_peer = await app.resolve_peer(config.JOIN_AS)
     if safone.get(chat.id) is not None:
@@ -99,15 +99,16 @@ async def start_stream(song: Song, lang):
             chat.id,
             get_quality(song),
             stream_type=StreamType().pulse_stream,
-            join_as=join_as_peer
+            join_as=None if join_as_peer is None else InputPeerChannel(join_as_peer.channel_id, join_as_peer.access_hash)
         )
     except (NoActiveGroupCall, GroupCallNotFound):
-        # peer = await app.resolve_peer(chat.id)
-        if join_as_peer is None:
-            join_as_peer = await app.resolve_peer(chat.id)
+        peer = await app.resolve_peer(chat.id)
         await app.send(
             CreateGroupCall(
-                peer=join_as_peer,
+                peer=InputPeerChannel(
+                    channel_id=peer.channel_id,
+                    access_hash=peer.access_hash
+                ),
                 random_id=app.rnd_id() // 9000000000,
             )
         )
