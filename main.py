@@ -67,7 +67,7 @@ async def repo(_, message: Message):
 @handle_error
 async def ping(_, message: Message):
     timeout = await pytgcalls.ping
-    await message.reply_text(f"🤖 **Pong!**\n`{timeout * 1000} ms`")
+    await message.reply_text(f"🤖 **Pong!**\n`{timeout * 100} ms`")
 
 
 @client.on_message(
