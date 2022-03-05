@@ -19,6 +19,7 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>
 import os
 import json
 import shutil
+from time import time
 from config import config
 from core.song import Song
 from pyrogram.types import Message
@@ -65,7 +66,8 @@ async def repo(_, message: Message):
 )
 @handle_error
 async def ping(_, message: Message):
-    await message.reply_text(f"🤖 **Pong!**\n`{await pytgcalls.ping} ms`")
+    timeout = await pytgcalls.ping
+    await message.reply_text(f"🤖 **Pong!**\n`{timeout * 1000} ms`")
 
 
 @client.on_message(
