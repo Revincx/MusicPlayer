@@ -71,7 +71,7 @@ async def skip_stream(song: Song, lang):
             song.title,
             song.source,
             song.duration,
-            song.request_msg.chat.id,
+            song.request_msg.chat.title,
             song.requested_by.mention
             if song.requested_by
             else song.request_msg.sender_chat.title,
@@ -130,7 +130,7 @@ async def start_stream(song: Song, lang):
             song.title,
             song.source,
             song.duration,
-            song.request_msg.chat.id,
+            song.request_msg.chat.title,
             song.requested_by.mention
             if song.requested_by
             else song.request_msg.sender_chat.title,
