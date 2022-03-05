@@ -80,7 +80,7 @@ async def start(_, message: Message, lang):
 
 
 @client.on_message(
-    filters.command("help", config.PREFIXES) & ~filters.private & ~filters.edited
+    filters.command("help", config.PREFIXES)  & ~filters.edited
 )
 @language
 @handle_error
